@@ -52,7 +52,7 @@
 
         <!-- Desktop Menu -->
         <ul class="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-            <li><a href="#" class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">Shop</a></li>
+            <li><a href="/" class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">Shop</a></li>
             <li><a href="#" class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">On Sale</a></li>
             <li><a href="#" class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">New Arrivals</a></li>
             <li><a href="#" class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">Brands</a></li>
@@ -151,10 +151,11 @@
                 Browse through our diverse range of meticulously crafted garments,
                 designed to bring out your individuality and cater to your sense of style.
             </p>
-            <button class="px-6 py-3 bg-black text-white font-medium rounded-full hover:scale-105 hover:bg-gray-800 transition transform duration-200 shadow-lg animate__animated animate__pulse animate__infinite"
-                onclick="window.scrollTo({top:document.body.scrollHeight/4,left:0,behavior:'smooth'})">
-                <i class="fa fa-bolt mr-2"></i> Shop Now
-            </button>
+            <a href="{{ url('product-search') }}">
+                <button class="px-6 py-3 bg-black text-white font-medium rounded-full hover:scale-105 hover:bg-gray-800 transition transform duration-200 shadow-lg animate__animated animate__pulse animate__infinite">
+                    <i class="fa fa-bolt mr-2"></i> Shop Now
+                </button>
+            </a>
             <!-- Stats -->
             <div class="flex flex-wrap gap-8 mt-10">
                 <div data-aos="zoom-in-up" data-aos-delay="100">
@@ -206,11 +207,11 @@
                 <h2 class="text-3xl font-extrabold tracking-tight mb-6 animate__animated animate__jackInTheBox">NEW ARRIVALS</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                     <!-- Product Card -->
-                    <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-2xl transition-transform transform hover:-translate-y-2 group animate__animated animate__fadeInUp" data-aos="flip-left">
-                        <img src="{{ asset('photos/tshirt1.png') }}" alt="T-shirt" class="rounded-lg mb-3 mx-auto transition-transform duration-300 group-hover:scale-105">
-                        <h3 class="text-sm font-medium text-gray-800">T-shirt with Tape Details</h3>
-                        <p class="text-lg font-bold mt-2 animate__animated animate__bounce">Rp1.900.000</p>
-                    </div>
+                    <a href="{{ url('product-detail') }}" class="block bg-white rounded-xl shadow-lg p-4 hover:shadow-2xl transition-transform transform hover:-translate-y-2 group animate__animated animate__fadeInUp" data-aos="flip-left">
+                        <img src="{{ asset('image/baju.png') }}" alt="T-shirt" class="rounded-lg mb-3 mx-auto transition-transform duration-300 group-hover:scale-105">
+                        <h3 class="text-sm font-medium text-gray-800">ONE LIFE GRAPHIC T-SHIRT</h3>
+                        <p class="text-lg font-bold mt-2 animate__animated animate__bounce">Rp260.000.000</p>
+                    </a>
 
                     <div class="bg-white rounded-xl shadow-lg p-4 hover:shadow-2xl transition-transform transform hover:-translate-y-2 group animate__animated animate__fadeInUp" data-aos="flip-left" data-aos-delay="50">
                         <img src="{{ asset('photos/jeans.png') }}" alt="Jeans" class="rounded-lg mb-3 mx-auto transition-transform duration-300 group-hover:scale-105">

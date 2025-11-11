@@ -53,7 +53,7 @@
 
         <!-- Desktop Menu -->
         <ul class="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-            <li><a href="#"
+            <li><a href="/"
                     class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">Shop</a>
             </li>
             <li><a href="#"
@@ -228,16 +228,16 @@
                 <!-- Products Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Product 1 -->
-                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Gradient+Graphic+T-shirt" class="rounded-xl mb-3 w-full">
-                        <h3 class="font-semibold">Gradient Graphic T-shirt</h3>
+                    <a href="{{ url('product-detail') }}" class="block border rounded-2xl p-4 hover:shadow-lg transition cursor-pointer">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">ONE LIFE GRAPHIC T-SHIRT</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.5/5</p>
-                        <p class="font-bold text-lg">Rp145.000</p>
-                    </div>
+                        <p class="font-bold text-lg">Rp260.000.000</p>
+                    </a>
 
                     <!-- Product 2 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Polo+with+Tipping+Details" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Polo with Tipping Details</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐½ 4.8/5</p>
                         <p class="font-bold text-lg">Rp180.000</p>
@@ -245,7 +245,7 @@
 
                     <!-- Product 3 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Black+Striped+T-shirt" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Black Striped T-shirt</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐⭐ 5.0/5</p>
                         <div class="flex gap-2 items-center">
@@ -257,7 +257,7 @@
 
                     <!-- Product 4 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Skinny+Fit+Jeans" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Skinny Fit Jeans</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.5/5</p>
                         <div class="flex gap-2 items-center">
@@ -269,7 +269,7 @@
 
                     <!-- Product 5 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Checkered+Shirt" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Checkered Shirt</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐½ 4.5/5</p>
                         <p class="font-bold text-lg">Rp180.000</p>
@@ -277,7 +277,7 @@
 
                     <!-- Product 6 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Sleeve+Striped+T-shirt" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Sleeve Striped T-shirt</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐ 4.0/5</p>
                         <div class="flex gap-2 items-center">
@@ -289,7 +289,7 @@
 
                     <!-- Product 7 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Vertical+Striped+Shirt" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Vertical Striped Shirt</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐⭐ 5.0/5</p>
                         <div class="flex gap-2 items-center">
@@ -301,7 +301,7 @@
 
                     <!-- Product 8 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Courage+Graphic+T-shirt" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Courage Graphic T-shirt</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐ 4.0/5</p>
                         <p class="font-bold text-lg">Rp145.000</p>
@@ -309,7 +309,7 @@
 
                     <!-- Product 9 -->
                     <div class="border rounded-2xl p-4 hover:shadow-lg transition">
-                        <img src="https://via.placeholder.com/300x400?text=Loose+Fit+Bermuda+Shorts" class="rounded-xl mb-3 w-full">
+                        <img src="image/baju.png" class="rounded-xl mb-3 w-full">
                         <h3 class="font-semibold">Loose Fit Bermuda Shorts</h3>
                         <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.0/5</p>
                         <p class="font-bold text-lg">Rp80.000</p>

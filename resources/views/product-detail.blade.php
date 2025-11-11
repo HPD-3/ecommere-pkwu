@@ -312,7 +312,7 @@
       <div class="text-2xl font-extrabold tracking-tight">SHOP.CO</div>
       <!-- Desktop Menu -->
       <ul class="hidden md:flex items-center gap-8 text-gray-700 font-medium">
-        <li><a href="#"
+        <li><a href="/"
             class="hover:text-black transition-all duration-200 relative after:absolute after:left-0 after:-bottom-1 after:w-0 hover:after:w-full after:h-1 after:bg-gray-700 after:rounded-full after:transition-all after:duration-500">Shop</a>
         </li>
         <li><a href="#"
