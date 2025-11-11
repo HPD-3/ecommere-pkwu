@@ -146,7 +146,191 @@
     </nav>
 
     <!-- isi -->
-    
+    <main class="pt-32 px-4 md:px-12 lg:px-20 bg-white text-gray-800" data-aos="fade-up">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Sidebar Filter -->
+            <aside class="lg:w-1/4 w-full border border-gray-200 rounded-2xl p-6 h-max">
+                <h2 class="text-xl font-bold mb-6">Filters</h2>
+                <div class="space-y-6">
+                    <!-- Categories -->
+                    <div>
+                        <h3 class="font-semibold mb-3 text-gray-700">Category</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> T-shirts</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Shorts</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Shirts</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Hoodie</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Jeans</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Range -->
+                    <div>
+                        <h3 class="font-semibold mb-3 text-gray-700">Price</h3>
+                        <input type="range" min="50" max="200" value="100" class="w-full accent-black">
+                        <div class="flex justify-between text-sm mt-2 text-gray-600">
+                            <span>Rp50.000</span>
+                            <span>Rp200.000</span>
+                        </div>
+                    </div>
+
+                    <!-- Colors -->
+                    <div>
+                        <h3 class="font-semibold mb-3 text-gray-700">Colors</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="w-6 h-6 rounded-full bg-orange-500 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-yellow-400 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-green-500 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-blue-500 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-purple-500 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-pink-500 border cursor-pointer"></span>
+                            <span class="w-6 h-6 rounded-full bg-black border cursor-pointer"></span>
+                        </div>
+                    </div>
+
+                    <!-- Size -->
+                    <div>
+                        <h3 class="font-semibold mb-3 text-gray-700">Size</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="border rounded-full px-4 py-1 text-sm">XS</button>
+                            <button class="border rounded-full px-4 py-1 text-sm">S</button>
+                            <button class="border rounded-full px-4 py-1 text-sm">M</button>
+                            <button class="border rounded-full px-4 py-1 text-sm bg-black text-white">L</button>
+                            <button class="border rounded-full px-4 py-1 text-sm">XL</button>
+                        </div>
+                    </div>
+
+                    <!-- Dress Style -->
+                    <div>
+                        <h3 class="font-semibold mb-3 text-gray-700">Dress Style</h3>
+                        <ul class="space-y-2 text-sm">
+                            <li><label class="flex items-center gap-2"><input type="checkbox" checked> Casual</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Formal</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Party</label></li>
+                            <li><label class="flex items-center gap-2"><input type="checkbox"> Gym</label></li>
+                        </ul>
+                    </div>
+
+                    <!-- Apply Filter -->
+                    <button class="mt-4 w-full bg-black text-white py-2 rounded-full font-semibold hover:scale-[1.02] transition">
+                        Apply Filter
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Products Section -->
+            <section class="lg:w-3/4 w-full">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold">Casual</h2>
+                    <p class="text-sm text-gray-500">Showing 1–10 of 100 Products | Sort by: <span class="font-semibold text-black">Most Popular</span></p>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Product 1 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Gradient+Graphic+T-shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Gradient Graphic T-shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.5/5</p>
+                        <p class="font-bold text-lg">Rp145.000</p>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Polo+with+Tipping+Details" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Polo with Tipping Details</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐½ 4.8/5</p>
+                        <p class="font-bold text-lg">Rp180.000</p>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Black+Striped+T-shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Black Striped T-shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐⭐ 5.0/5</p>
+                        <div class="flex gap-2 items-center">
+                            <p class="font-bold text-lg">Rp120.000</p>
+                            <p class="text-gray-400 line-through text-sm">Rp160.000</p>
+                            <span class="text-red-500 text-sm font-semibold">-30%</span>
+                        </div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Skinny+Fit+Jeans" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Skinny Fit Jeans</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.5/5</p>
+                        <div class="flex gap-2 items-center">
+                            <p class="font-bold text-lg">Rp240.000</p>
+                            <p class="text-gray-400 line-through text-sm">Rp260.000</p>
+                            <span class="text-red-500 text-sm font-semibold">-20%</span>
+                        </div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Checkered+Shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Checkered Shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐½ 4.5/5</p>
+                        <p class="font-bold text-lg">Rp180.000</p>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Sleeve+Striped+T-shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Sleeve Striped T-shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐ 4.0/5</p>
+                        <div class="flex gap-2 items-center">
+                            <p class="font-bold text-lg">Rp130.000</p>
+                            <p class="text-gray-400 line-through text-sm">Rp160.000</p>
+                            <span class="text-red-500 text-sm font-semibold">-30%</span>
+                        </div>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Vertical+Striped+Shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Vertical Striped Shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐⭐ 5.0/5</p>
+                        <div class="flex gap-2 items-center">
+                            <p class="font-bold text-lg">Rp212.000</p>
+                            <p class="text-gray-400 line-through text-sm">Rp232.000</p>
+                            <span class="text-red-500 text-sm font-semibold">-20%</span>
+                        </div>
+                    </div>
+
+                    <!-- Product 8 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Courage+Graphic+T-shirt" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Courage Graphic T-shirt</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐⭐ 4.0/5</p>
+                        <p class="font-bold text-lg">Rp145.000</p>
+                    </div>
+
+                    <!-- Product 9 -->
+                    <div class="border rounded-2xl p-4 hover:shadow-lg transition">
+                        <img src="https://via.placeholder.com/300x400?text=Loose+Fit+Bermuda+Shorts" class="rounded-xl mb-3 w-full">
+                        <h3 class="font-semibold">Loose Fit Bermuda Shorts</h3>
+                        <p class="text-yellow-500 text-sm mb-1">⭐⭐⭐☆☆ 3.0/5</p>
+                        <p class="font-bold text-lg">Rp80.000</p>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-between items-center mt-10">
+                    <button class="border px-4 py-2 rounded-full hover:bg-black hover:text-white transition">← Previous</button>
+                    <div class="flex gap-2 text-sm">
+                        <button class="bg-black text-white px-3 py-1 rounded-full">1</button>
+                        <button class="border px-3 py-1 rounded-full">2</button>
+                        <button class="border px-3 py-1 rounded-full">3</button>
+                        <span class="px-2">...</span>
+                        <button class="border px-3 py-1 rounded-full">10</button>
+                    </div>
+                    <button class="border px-4 py-2 rounded-full hover:bg-black hover:text-white transition">Next →</button>
+                </div>
+            </section>
+        </div>
+    </main>
     <!-- end isi -->
 
     <footer class="bg-[#f2f0f1] pt-12 pb-8 relative overflow-hidden" data-aos="fade-up">
