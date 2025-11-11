@@ -398,7 +398,7 @@
       <!-- Alpine.js for state -->
     </nav>
   </header>
-  <main>
+  <main class="mt-20 flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-28 bg-[#f2f0f1] relative overflow-hidden" style="margin-top:64px;">
     <div class="container">
       <div class="breadcrumb">Shop / T-Shirts</div>
       <div class="product-detail">

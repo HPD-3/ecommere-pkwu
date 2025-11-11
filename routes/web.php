@@ -7,3 +7,4 @@ Route::get('/', function () {
 });
 
 Route::view('/product-detail', 'product-detail');
+Route::view('/product-search', 'product-search');
