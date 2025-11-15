@@ -3,9 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarangController;
 
-// Product detail & search
+// Product detail
 Route::view('/product-detail', 'product-detail');
-Route::view('/product-search', 'product-search');
+
+// Product search (ALIAS TO product-search, resolve route issue)
+Route::get('/barang/search', [BarangController::class, 'search'])->name('barang.search');
+Route::get('/product-search', [BarangController::class, 'search'])->name('product-search');
 
 // Cart: Add product to cart (create the missing route)
 Route::post('/cart/add/{id}', [BarangController::class, 'addToCart'])->name('cart.add');

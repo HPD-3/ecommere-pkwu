@@ -171,4 +171,73 @@ class BarangController extends Controller
         $product->delete();
         return redirect()->route('barang.index')->with('success', 'Product deleted successfully.');
     }
+
+    /**
+     * Search and sort products by name, description, SKU, category, or brand.
+     * Accepts 'q' (query) and 'sort' parameters in the request.
+     * Example usage: /products/search?q=shirt&sort=price_asc
+     */
+    public function search(Request $request)
+    {
+        $query = $request->input('q');
+        $sort = $request->input('sort');
+        $productsQuery = Products::with(['category', 'brand'])
+            ->where('is_active', true);
+
+        if ($query) {
+            $productsQuery->where(function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%")
+                  ->orWhere('description', 'LIKE', "%{$query}%")
+                  ->orWhere('sku', 'LIKE', "%{$query}%");
+            });
+
+            // Optionally filter by category/brand name as well
+            $productsQuery->orWhereHas('category', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            });
+            $productsQuery->orWhereHas('brand', function ($q) use ($query) {
+                $q->where('name', 'LIKE', "%{$query}%");
+            });
+        }
+
+        // Sorting logic
+        $sortField = 'created_at';
+        $sortDirection = 'desc';
+
+        switch ($sort) {
+            case 'created_at_asc':
+                $sortField = 'created_at';
+                $sortDirection = 'asc';
+                break;
+            case 'created_at_desc':
+                $sortField = 'created_at';
+                $sortDirection = 'desc';
+                break;
+            case 'price_asc':
+                $sortField = 'price';
+                $sortDirection = 'asc';
+                break;
+            case 'price_desc':
+                $sortField = 'price';
+                $sortDirection = 'desc';
+                break;
+            case 'name_asc':
+                $sortField = 'name';
+                $sortDirection = 'asc';
+                break;
+            case 'name_desc':
+                $sortField = 'name';
+                $sortDirection = 'desc';
+                break;
+            // Add cases for other custom sorts if needed
+            default:
+                // keep default (created_at desc)
+                break;
+        }
+
+        $products = $productsQuery->orderBy($sortField, $sortDirection)->get();
+
+        // You can pass the query and sort string back to the view for showing user what was searched/sorted
+        return view('barang.search', compact('products', 'query', 'sort'));
+    }
 }
