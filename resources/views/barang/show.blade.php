@@ -146,13 +146,14 @@
             @endif
           </div>
 
+          {{-- ✅ FIXED FORM --}}
           <form method="POST" action="{{ route('cart.add', $product->id) }}">
               @csrf
               <div class="qty flex items-center gap-2">
-                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
+                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=quantity]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
                 <input 
                   type="number" 
-                  name="qty" 
+                  name="quantity" 
                   value="1" 
                   min="1" 
                   class="w-16 text-center border rounded" 
@@ -160,13 +161,12 @@
                   oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '') || 1"
                   required
                 >
-                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
+                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=quantity]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
               </div>
               <button class="btn-cart" type="submit">Add to Cart</button>
           </form>
         </div>
       </div>
-
   </main>
 
   <footer class="bg-[#f2f0f1] pt-12 pb-8 relative overflow-hidden" data-aos="fade-up">
