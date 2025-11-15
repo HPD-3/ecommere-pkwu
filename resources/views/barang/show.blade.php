@@ -89,12 +89,19 @@
   </header>
 
   <main class="mt-20 flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-28 bg-[#f2f0f1] relative overflow-hidden" style="margin-top:64px;">
-    <div class="container">
-      <div class="breadcrumb">
-        Shop / {{ $product->category->name ?? '-' }}
-      </div>
+    <div class="container max-w-6xl mx-auto mt-6 mb-16 bg-white/90 rounded-2xl shadow-xl px-2 sm:px-6 py-8 md:py-12">
+      <!-- Breadcrumb with link support -->
+      <nav class="mb-5 flex items-center text-sm text-gray-500 gap-1">
+        <a href="{{ url('/') }}" class="hover:underline hover:text-black focus:outline-none focus:ring-2 focus:ring-black rounded">Shop</a>
+        <span class="mx-1 text-gray-400">›</span>
+        @if(isset($product->category->name))
+          <a href="#" class="hover:underline hover:text-black focus:outline-none focus:ring-2 focus:ring-black rounded">{{ $product->category->name }}</a>
+        @else
+          <span>-</span>
+        @endif
+      </nav>
 
-      <div class="product-detail">
+      <div class="product-detail grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-start">
         {{-- GAMBAR UTAMA PRODUK --}}
         @php
             use Illuminate\Support\Str;
@@ -109,63 +116,181 @@
             } elseif (!empty($product->image)) {
                 $imageSrc = 'data:image/jpeg;base64,' . base64_encode($product->image);
             } else {
-                $imageSrc = 'https://via.placeholder.com/500x500?text=No+Image';
+                $imageSrc = 'https://ui-avatars.com/api/?name='.urlencode($product->name).'&background=ddd&color=444&size=256';
             }
         @endphp
 
-        <div class="gallery">
-          <div class="main-img">
-            <img src="{{ $imageSrc }}" alt="{{ $product->name }}" class="object-cover rounded-lg border shadow"
-                 onerror="this.src='https://via.placeholder.com/500x500?text=No+Image';">
+        <!-- Product Gallery with lightbox hover (UI improvement) -->
+        <div class="gallery flex flex-col gap-4 sticky top-28">
+          <div class="main-img aspect-square bg-gray-100 flex items-center justify-center overflow-hidden rounded-xl shadow group">
+            <img 
+              src="{{ $imageSrc }}" 
+              alt="{{ $product->name }}" 
+              class="w-full h-full object-cover rounded-xl transition-transform duration-150 group-hover:scale-110"
+              loading="lazy"
+              onerror="this.src='https://via.placeholder.com/500x500?text=No+Image';"
+              style="max-height:430px;max-width:100%;"
+            >
+            <!-- Magnifier icon overlay -->
+            <span class="absolute bottom-4 right-4 bg-white/80 rounded-full p-1.5 text-lg drop-shadow hidden group-hover:block transition"><i class="fa fa-search"></i></span>
           </div>
         </div>
 
-        <div class="info">
-          <h1>{{ $product->name }}</h1>
-          <div class="stars">
+        <!-- PRODUCT INFO CARD -->
+        <div class="info relative bg-white/90 p-0 md:p-8 rounded-2xl">
+          <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-2">{{ $product->name }}</h1>
+
+          <!-- STAR RATING -->
+          <div class="stars flex items-center mb-3 text-yellow-400 gap-1 text-lg">
             @php $stars = floor($product->rating ?? 4); @endphp
-            @for($i = 0; $i < $stars; $i++) ★ @endfor
-            ({{ $product->rating ?? '4.5' }}/5)
+            @for($i = 0; $i < $stars; $i++)
+              <i class="fa fa-star"></i>
+            @endfor
+            @if(($product->rating ?? 4.5) - $stars >= 0.5)
+              <i class="fa fa-star-half-alt"></i>
+            @endif
+            <span class="text-gray-500 text-sm ml-2">
+              ({{ number_format($product->rating ?? 4.5, 1) }}/5)
+            </span>
           </div>
-          <div class="price">
-            Rp{{ number_format($product->price, 0, ',', '.') }}
+
+          <!-- PRICING -->
+          <div class="price flex items-center space-x-3 mb-2">
+            <span class="text-2xl md:text-3xl font-bold text-black">Rp{{ number_format($product->price, 0, ',', '.') }}</span>
             @if($product->old_price)
-              <span class="old">Rp{{ number_format($product->old_price, 0, ',', '.') }}</span>
-            @endif
-          </div>
-          <p class="desc">{{ $product->description ?? 'No description available.' }}</p>
-
-          <div class="size">
-            <p>Size:</p>
-            @if(!empty($product->sizes) && is_array($product->sizes))
-              @foreach($product->sizes as $size)
-                <span>{{ $size }}</span>
-              @endforeach
-            @else
-              <span>All Size</span>
+              <span class="old text-lg text-gray-400 line-through">Rp{{ number_format($product->old_price, 0, ',', '.') }}</span>
+              <span class="text-sm text-green-600 font-semibold">
+                -{{ round((($product->old_price - $product->price)/$product->old_price)*100) }}%
+              </span>
             @endif
           </div>
 
-          <form method="POST" action="{{ route('cart.add', $product->id) }}">
+          <!-- DESCRIPTION -->
+          <p class="desc text-gray-700 mb-6 text-base leading-relaxed">
+            {{ $product->description ?? 'No description available.' }}
+          </p>
+
+          <!-- PRODUCT OPTIONS: SIZE & COLOR -->
+          <div class="flex flex-col sm:flex-row gap-6 sm:gap-10 mb-5">
+
+            <!-- Size Selector, using radio buttons if multiple -->
+            <div class="size flex flex-col gap-1">
+              <span class="font-semibold text-gray-900">Size:</span>
+              @if(!empty($product->sizes) && is_array($product->sizes))
+                <div class="flex flex-row gap-2 mt-1">
+                  @foreach($product->sizes as $size)
+                    <label class="cursor-pointer">
+                      <input type="radio" name="size" value="{{ $size }}" class="peer hidden" @if($loop->first) checked @endif disabled>
+                      <span class="px-3 py-1.5 rounded-full bg-gray-200 text-xs font-medium peer-checked:bg-black peer-checked:text-white peer-disabled:opacity-90">
+                        {{ $size }}
+                      </span>
+                    </label>
+                  @endforeach
+                </div>
+              @elseif(!empty($product->size))
+                <span class="inline-block px-3 py-1.5 rounded-full bg-gray-200 text-xs font-medium mt-1">{{ $product->size }}</span>
+              @else
+                <span class="inline-block px-3 py-1.5 rounded-full bg-gray-100 text-gray-400 text-xs font-medium mt-1">All Size</span>
+              @endif
+            </div>
+
+            <!-- Color Selector as color dots -->
+            <div class="color flex flex-col gap-1">
+              <span class="font-semibold text-gray-900">Color:</span>
+              @php
+                $colors = [];
+                if (!empty($product->colors) && is_array($product->colors)) {
+                  $colors = $product->colors;
+                } elseif (!empty($product->color)) {
+                  if (is_array($product->color)) {
+                    $colors = $product->color;
+                  } else {
+                    $colors = array_map('trim', explode(',', $product->color));
+                  }
+                }
+              @endphp
+              @if(!empty($colors))
+                <div class="flex flex-row flex-wrap items-center gap-2 mt-1">
+                  @foreach($colors as $clr)
+                    @php
+                      $clrTrimmed = trim($clr);
+                      $isValidCssColor = preg_match('/^#([A-Fa-f0-9]{3,8})$/', $clrTrimmed) ||
+                                         preg_match('/^rgba?\(/i', $clrTrimmed) ||
+                                         preg_match('/^[a-z ]+$/i', $clrTrimmed);
+                    @endphp
+                    <span class="flex items-center gap-1">
+                      @if($isValidCssColor)
+                        <span title="{{ $clrTrimmed }}"
+                          style="background: {{ $clrTrimmed }};"
+                          class="inline-block w-6 h-6 rounded-full border shadow border-gray-300 align-middle"></span>
+                      @endif
+                      <span class="text-xs font-medium text-gray-700">
+                        {{ $clrTrimmed }}
+                      </span>
+                    </span>
+                  @endforeach
+                </div>
+              @else
+                <span class="inline-block px-3 py-1.5 rounded-full bg-gray-100 text-gray-400 text-xs font-medium mt-2">-</span>
+              @endif
+            </div>
+          </div>
+
+          <!-- SKU, Brand, Category -->
+          <ul class="flex flex-row flex-wrap gap-x-8 gap-y-2 mb-6 text-xs text-gray-600 font-medium">
+            <li>
+              <span class="uppercase text-gray-400">SKU:</span>
+              <span class="text-gray-700">{{ $product->sku ?? 'N/A' }}</span>
+            </li>
+            @if($product->brand?->name)
+            <li>
+              <span class="uppercase text-gray-400">Brand:</span>
+              <span class="text-gray-700">{{ $product->brand->name }}</span>
+            </li>
+            @endif
+            @if($product->category?->name)
+            <li>
+              <span class="uppercase text-gray-400">Category:</span>
+              <span class="text-gray-700">{{ $product->category->name }}</span>
+            </li>
+            @endif
+          </ul>
+
+          <!-- Add to Cart -->
+          <form method="POST" action="{{ route('cart.add', $product->id) }}" class="flex flex-col gap-3">
               @csrf
-              <div class="qty flex items-center gap-2">
-                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
+              <div class="qty flex items-center gap-3">
+                <span class="font-semibold text-gray-700">Qty:</span>
+                <button type="button"
+                        class="w-9 h-9 rounded-full border bg-white text-black text-lg font-bold hover:bg-gray-100 transition active:scale-95"
+                        aria-label="Decrease quantity"
+                        onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
                 <input 
                   type="number" 
                   name="qty" 
                   value="1" 
                   min="1" 
-                  class="w-16 text-center border rounded" 
-                  style="width:60px"
+                  class="w-16 text-center border rounded border-gray-300 py-2 focus:ring-2 focus:ring-black"
+                  style="width:64px"
                   oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/^0+/, '') || 1"
                   required
+                  aria-label="Quantity"
                 >
-                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
+                <button type="button"
+                        class="w-9 h-9 rounded-full border bg-white text-black text-lg font-bold hover:bg-gray-100 transition active:scale-95"
+                        aria-label="Increase quantity"
+                        onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
               </div>
-              <button class="btn-cart" type="submit">Add to Cart</button>
+              <button 
+                class="btn-cart mt-4 bg-black text-white font-semibold py-3 rounded-lg text-base shadow hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black transition w-full md:w-auto"
+                type="submit"
+              >
+                <i class="fa fa-cart-plus mr-2"></i>Add to Cart
+              </button>
           </form>
         </div>
       </div>
+    </div>
 
   </main>
 

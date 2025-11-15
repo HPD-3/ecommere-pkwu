@@ -121,23 +121,3 @@
     </div>
 </body>
 </html>
-{{-- 
-    NOTE: 
-    If you see a "Malformed UTF-8 characters, possibly incorrectly encoded" error in the Blade view or the Laravel component
-    (for example: exceptions/renderer/components/topbar.blade.php), the most common root cause is an invalid or non-UTF-8 encoded
-    character somewhere in a Blade template, PHP file, or in the database content shown in this view.
-
-    TO FIX: 
-    1. Ensure this file is saved as UTF-8 (without BOM).
-    2. If you pasted content from an external source (Word, PDF, web), retype suspect lines by hand.
-    3. Check any data sent to this view for invalid encoding or strange characters.
-    4. Use a programmer's editor that can show ALL invisible/special characters.
-    5. If seen during error reporting ("renderer/components/topbar.blade.php"), check any recently edited views or models.
-
-    TOOLS:
-      - On Linux/macOS: find non-ASCII via
-          grep -P -n "[^\x00-\x7F]" resources/views/
-      - Or use a hex editor to examine content.
-
-    If the error persists in exception pages, check and clean all error message content and the offending Blade component(s).
---}
