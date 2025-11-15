@@ -113,8 +113,8 @@ class BarangController extends Controller
         }
         session()->put('cart', $cart);
 
-        // Use the named route 'cart.add' to redirect back to product or cart page
-        return redirect()->route('cart.add', ['id' => $id])->with('success', 'Product added to cart.');
+        // ✅ FIXED: redirect ke halaman cart (GET), bukan ke route POST
+        return redirect()->route('cart.view')->with('success', 'Product added to cart.');
     }
 
     /**
@@ -229,15 +229,36 @@ class BarangController extends Controller
                 $sortField = 'name';
                 $sortDirection = 'desc';
                 break;
-            // Add cases for other custom sorts if needed
             default:
-                // keep default (created_at desc)
                 break;
         }
 
         $products = $productsQuery->orderBy($sortField, $sortDirection)->get();
 
-        // You can pass the query and sort string back to the view for showing user what was searched/sorted
         return view('barang.search', compact('products', 'query', 'sort'));
+    }
+
+    /**
+     * View the cart page.
+     */
+    public function viewCart()
+    {
+        $cart = session()->get('cart', []);
+        $total = 0;
+        foreach ($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+
+        return view('cart', compact('cart', 'total'));
+    }
+
+    /**
+     * Get cart count for badge update.
+     */
+    public function cartCount()
+    {
+        $cart = session()->get('cart', []);
+        $count = collect($cart)->sum('quantity');
+        return response()->json(['count' => $count]);
     }
 }

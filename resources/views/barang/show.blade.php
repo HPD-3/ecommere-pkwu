@@ -256,18 +256,13 @@
             @endif
           </ul>
 
-          <!-- Add to Cart -->
-          <form method="POST" action="{{ route('cart.add', $product->id) }}" class="flex flex-col gap-3">
+          <form method="POST" action="{{ route('cart.add', $product->id) }}">
               @csrf
-              <div class="qty flex items-center gap-3">
-                <span class="font-semibold text-gray-700">Qty:</span>
-                <button type="button"
-                        class="w-9 h-9 rounded-full border bg-white text-black text-lg font-bold hover:bg-gray-100 transition active:scale-95"
-                        aria-label="Decrease quantity"
-                        onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
+              <div class="qty flex items-center gap-2">
+                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=quantity]'); qty.value = Math.max(1, (parseInt(qty.value)||1) - 1);">-</button>
                 <input 
                   type="number" 
-                  name="qty" 
+                  name="quantity" 
                   value="1" 
                   min="1" 
                   class="w-16 text-center border rounded border-gray-300 py-2 focus:ring-2 focus:ring-black"
@@ -276,10 +271,7 @@
                   required
                   aria-label="Quantity"
                 >
-                <button type="button"
-                        class="w-9 h-9 rounded-full border bg-white text-black text-lg font-bold hover:bg-gray-100 transition active:scale-95"
-                        aria-label="Increase quantity"
-                        onclick="var qty = this.parentNode.querySelector('input[name=qty]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
+                <button type="button" onclick="var qty = this.parentNode.querySelector('input[name=quantity]'); qty.value = (parseInt(qty.value)||1) + 1;">+</button>
               </div>
               <button 
                 class="btn-cart mt-4 bg-black text-white font-semibold py-3 rounded-lg text-base shadow hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-black transition w-full md:w-auto"
@@ -290,7 +282,6 @@
           </form>
         </div>
       </div>
-    </div>
 
   </main>
 

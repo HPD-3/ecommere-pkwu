@@ -21,9 +21,16 @@
                         </svg>
                     </button>
                 </form>
-            </div>
-            <button class="p-2 rounded-full hover:bg-gray-100 transition-all duration-200 animate__animated animate__fadeIn" data-aos="zoom-in">
+                     </div>
+                        <div class="relative">
+              <a href="{{ route('cart.view') }}" class="p-2 rounded-full hover:bg-gray-100 transition-all duration-200">
                 <i class="fa fa-shopping-cart text-xl"></i>
+                <span id="cart-count-badge"
+                      class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-md">
+                  0
+                </span>
+              </a>
+            </div>
             </button>
             <button class="p-2 rounded-full hover:bg-gray-100 transition-all duration-200 animate__animated animate__fadeIn" data-aos="zoom-in" data-aos-delay="200">
                 <i class="fa fa-user text-xl"></i>
@@ -82,3 +89,19 @@
             </div>
         </div>
     </nav>
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             fetch("{{ route('cart.count') }}")
+                 .then(res => res.json())
+                 .then(data => {
+                     const badge = document.getElementById("cart-count-badge");
+                     if (data.count > 0) {
+                         badge.textContent = data.count;
+                         badge.classList.remove("hidden");
+                     } else {
+                         badge.classList.add("hidden");
+                     }
+                 });
+         });
+    </script>

@@ -20,3 +20,7 @@ Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
 Route::resource('barang', BarangController::class)->except(['index']);
 
 Route::get('/', [BarangController::class, 'landing'])->name('landing')->defaults('resource', 'barang');
+
+//cart view route
+Route::get('/cart', [BarangController::class, 'viewCart'])->name('cart.view');
+Route::get('/cart/count', [BarangController::class, 'cartCount'])->name('cart.count');
